@@ -4,6 +4,10 @@ class Deck
     @cards = []
   end
 
+  def add_card(card)
+      @cards << card
+  end
+
   def rank_of_cards_at
     @rank_of_cards_at = ()
   end
