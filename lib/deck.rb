@@ -27,7 +27,7 @@ class Deck
   end
 
   def remove_card
-    @remove_card = remove_card.shift
+    cards.shift
   end
 
 end
