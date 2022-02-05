@@ -1,10 +1,10 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :winner
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
-    @type = :basic, :war, :mutually_assured_destruction
+    @winner = winner
   end
 
   def type
@@ -31,12 +31,20 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war.push(@player1.deck.cards[0], @player2.deck.cards[0])
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
     elsif type == :war
-      @spoils_of_war.push([@player1.deck.cards[0, 1, 2], @player2.deck.cards[0, 1, 2]])
+      @spoils_of_war.push(@player1.deck.cards.shift(3), @player2.deck.cards.shift(3))
     elsif type == :mutually_assured_destruction
       @player1.deck.cards.shift(3)
       @player2.deck.cards.shift(3)
     end
+  end
+
+  def award_spoils
+    if @winner == @player1
+      @player1.deck.cards.push(@spoils_of_war)
+    else
+      @player2.deck.cards.push(@spoils_of_war)
+    end.flatten!
   end
 end
