@@ -284,7 +284,7 @@ RSpec.describe Turn do
     expect(turn.type).to eq(:mutually_assured_destruction)
   end
 
-  xit " declares no winner for mutually_assured_destruction" do
+  it " declares no winner for mutually_assured_destruction" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -307,7 +307,7 @@ RSpec.describe Turn do
     expect(winner).to eq("No Winner")
   end
 
-  xit "piles turn cards to spoil pile for mutually_assured_destruction" do
+  it "piles no cards to spoil pile for mutually_assured_destruction" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -332,7 +332,7 @@ RSpec.describe Turn do
     expect(turn.spoils_of_war).to eq([])
   end
 
-  xit "awards spoils pile to winner for mutually_assured_destruction" do
+  it "removes cards from player decks for mutually_assured_destruction" do
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)
     card3 = Card.new(:heart, '9', 9)
@@ -355,7 +355,7 @@ RSpec.describe Turn do
     turn.pile_cards
 
     turn.award_spoils(winner)
-
+    
     expect(player1.deck).to eq(deck1)
     expect(player2.deck).to eq(deck2)
   end
