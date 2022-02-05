@@ -17,15 +17,15 @@ class Turn
     end
   end
 
-  # def winner
-  #   if type == :basic
-  #     return player1 if player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-  #                      else player2
-  #                    end
-  #   elsif type == :war
-  #     return player1 if player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-  #     player2
-  #   else type == :mutually_assured_destruction
-  #     return "No Winner"
-  #   end
+  def winner
+    if type == :basic
+      return @player1 if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+        @player2
+    elsif type == :war
+      return @player1 if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player2
+    elsif type == :mutually_assured_destruction
+      "No Winner"
+    end
   end
+end
