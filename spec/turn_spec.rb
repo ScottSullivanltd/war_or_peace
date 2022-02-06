@@ -355,9 +355,8 @@ RSpec.describe Turn do
     turn.pile_cards
 
     turn.award_spoils(winner)
-    
-    expect(player1.deck).to eq(deck1)
-    expect(player2.deck).to eq(deck2)
+    expect(player1.deck.cards.length).to eq(1)
+    expect(player2.deck.cards.length).to eq(1)
   end
 
 end
