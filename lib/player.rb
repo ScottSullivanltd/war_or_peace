@@ -7,9 +7,7 @@ class Player
 
   def has_lost?
     # return true if deck.cards.length == 0
-    if deck.cards.count > 0
-      false
-    end
+    return false if deck.cards.count > 0
   end
 
 end

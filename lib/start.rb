@@ -10,9 +10,9 @@ class Start
     p "The players today are #{player1.name} and #{player2.name}."
     p "Type 'GO' to start the game!"
     p "__________________________________________________________________"
-    input = gets.chomp
+    input = gets.chomp.to_s
       if input != 'GO'
-        p "Incorrect input. Please enter 'GO'"
+        puts "Incorrect input. Please enter 'GO'"
       end
   end
 end

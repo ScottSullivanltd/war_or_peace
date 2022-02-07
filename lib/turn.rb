@@ -30,27 +30,30 @@ class Turn
 
   def pile_cards
     if type == :basic
-      @spoils_of_war.push(@player1.deck.remove_card, @player2.deck.remove_card)
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
     elsif type == :war
-      @spoils_of_war.push(@player1.deck.remove_card, @player2.deck.remove_card)
-      @spoils_of_war.push(@player1.deck.remove_card, @player2.deck.remove_card)
-      @spoils_of_war.push(@player1.deck.remove_card, @player2.deck.remove_card)
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
+      @spoils_of_war.push(@player1.deck.cards.shift, @player2.deck.cards.shift)
     elsif type == :mutually_assured_destruction
-      @player1.deck.remove_card
-      @player1.deck.remove_card
-      @player1.deck.remove_card
-      @player2.deck.remove_card
-      @player2.deck.remove_card
-      @player2.deck.remove_card
+      @player1.deck.cards.shift
+      @player1.deck.cards.shift
+      @player1.deck.cards.shift
+      @player2.deck.cards.shift
+      @player2.deck.cards.shift
+      @player2.deck.cards.shift
     end
   end
 
   def award_spoils(winner)
-    if winner == @player1
-      @player1.deck.cards.push(@spoils_of_war)
-    else
-      @player2.deck.cards.push(@spoils_of_war)
-    end.flatten!
-    spoils_of_war.clear
+    until @spoils_of_war.empty?
+      winner.deck.cards << @spoils_of_war.shift
+    end
+  #   if winner == @player1
+  #     @player1.deck.cards.push(@spoils_of_war)
+  #   else
+  #     @player2.deck.cards.push(@spoils_of_war)
+  #   end.flatten!
+  #   spoils_of_war.clear
   end
 end

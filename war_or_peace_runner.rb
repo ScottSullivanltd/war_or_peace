@@ -76,31 +76,30 @@ new_game.game_start
 
 turn = Turn.new(player1, player2)
 turn_number = 0
-until turn_number == 100000
+until turn_number == 1000000
+  turn_type = turn.type
   turn_number += 1
-    if turn.type == :basic
+    if turn_type == :basic
       winner = turn.winner
       turn.pile_cards
       turn.award_spoils(winner)
       puts "Turn #{turn_number}: #{winner.name} won 2 cards"
-    elsif turn.type == :war
+    elsif turn_type == :war
       winner = turn.winner
       turn.pile_cards
       turn.award_spoils(winner)
       puts "Turn #{turn_number}: WAR - #{winner.name} won 6 cards"
-    elsif turn.type == :mutually_assured_destruction
+    elsif turn_type == :mutually_assured_destruction
       turn.pile_cards
       puts "Turn #{turn_number}: *mutually assured destruction* 6 cards removed from play"
     end
-
     break if player1.has_lost? || player2.has_lost?
-
-    if player1.has_lost?
-      puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
-    elsif player2.has_lost?
-      puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
-    end
-    # binding.pry
 end
 
-puts "---- DRAW ----"
+if player1.has_lost?
+  puts "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+elsif player2.has_lost?
+  puts "*~*~*~* #{player1.name} has won the game! *~*~*~*"
+else
+  puts "---- DRAW ----"
+end

@@ -8,8 +8,12 @@ class Deck
     @cards << card
   end
 
-  def rank_of_card_at(card)
-    cards[card].rank
+  def rank_of_card_at(rank)
+    if cards[2] == nil
+      1
+    else
+      cards[rank].rank
+    end
   end
 
   def high_ranking_cards
